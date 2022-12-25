@@ -1,23 +1,21 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import React, { useContext, useState } from 'react';
+import { View, Text, Pressable } from 'react-native';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
-import { initialValues, AddExpanseValidationSchema } from './AddExpanse.validation';
+import { initialValues, AddExpenseValidationSchema } from './AddExpense.validation';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
-import { IIncomeOrExpanse } from '../../providers/DataProvider/dataContext.types';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { toDate } from 'date-fns';
-import styles from './AddExpanse.styles';
+import styles from './AddExpense.styles';
 
-function LoginScreen() {
-	const { expanseList,expanses, addExpanse } = useContext(dataContext);
-	const [show] = useState(false);
+function AddExpense() {
+	const { expenseList, addExpense } = useContext(dataContext);
 	const { handleSubmit, values, handleChange, setFieldValue } = useFormik({
 		initialValues,
-		validationSchema: AddExpanseValidationSchema,
+		validationSchema: AddExpenseValidationSchema,
 		onSubmit: () => {
-			addExpanse({ id: 'ex' + expanseList.length, connected: [], name: values.name, value: values.value, date: values.date, description: values.description });
-			console.log(expanseList);
+			addExpense({ id: 'ex' + expenseList.length, connected: [], name: values.name, value: values.value, date: values.date, description: values.description });
+			console.log(expenseList);
 		},
 	});
 	const dataPickerShowMode = (currentMode: any) => {
@@ -58,4 +56,4 @@ function LoginScreen() {
 	</View>;
 }
 
-export default LoginScreen;
+export default AddExpense;

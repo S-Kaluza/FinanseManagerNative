@@ -1,17 +1,15 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import React, { useContext, useState } from 'react';
+import { View, Text, Pressable } from 'react-native';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import { initialValues, AddIncomeValidationSchema } from './AddIncome.validation';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
-import { IIncomeOrExpanse } from '../../providers/DataProvider/dataContext.types';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { toDate } from 'date-fns';
 import styles from './AddIncome.styles';
 
-function LoginScreen() {
-	const { setIncomes, incomeList,incomes, addIncome } = useContext(dataContext);
-	const [show] = useState(false);
+function AddIncome() {
+	const { incomeList, addIncome } = useContext(dataContext);
 	const { handleSubmit, values, handleChange, setFieldValue } = useFormik({
 		initialValues,
 		validationSchema: AddIncomeValidationSchema,
@@ -59,4 +57,4 @@ function LoginScreen() {
 	</View>;
 }
 
-export default LoginScreen;
+export default AddIncome;

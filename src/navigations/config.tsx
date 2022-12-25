@@ -2,9 +2,9 @@ import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import DashboardScreen from '../screens/DashboardScreen/DashboardScreen';
 import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
-import {INavRouting} from './RootNavigator.types';
+import { INavRouting } from './RootNavigator.types';
 import MenuScreen from '../screens/MenuScreen/MenuScreen';
-import AddExpanse from '../screens/AddExpanse/AddExpanse';
+import AddExpense from '../screens/AddExpense/AddExpense';
 import AddIncome from '../screens/AddIncome/AddIncome';
 import Analytics from '../screens/Analytics/Analytics';
 import CurrencyConverter from '../screens/CurrencyConverter/CurrencyConverter';
@@ -49,10 +49,10 @@ export const navRouting: INavRouting[] = [
 		isProtected: false,
 	},
 	{
-		name: 'AddExpanse',
-		options: { title: 'Add user expanse' },
+		name: 'AddExpense',
+		options: { title: 'Add user expense' },
 		nested: [],
-		component: AddExpanse,
+		component: AddExpense,
 		isProtected: false,
 	},
 	{

@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native';
 import AuthProvider from './src/providers/AuthProvider/AuthProvider';
 import DataProvider from './src/providers/DataProvider/DataProvider';
 import { QueryClientProvider } from 'react-query';
@@ -17,12 +16,3 @@ export default function App() {
 		</QueryClientProvider>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});

@@ -1,28 +1,28 @@
 import { useState } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { dataFetch } from '../../api/dataApi';
-import { IExchangeSendedData, IIncomeOrExpanse } from './dataContext.types';
+import { IExchangeSendedData, IIncomeOrExpense } from './dataContext.types';
 import { monthlyAnalyticsArray, weekAnalyticsArray } from './dataContext.initialValues';
-import { Interval, getWeek } from 'date-fns';
+import { getWeek } from 'date-fns';
 
 function useDataProvider() {
 	const [number, setNumber] = useState<number>(10);
 	const [analyticsDataWeek] = useState(weekAnalyticsArray);
 	const [analyticsDataMonth] = useState(monthlyAnalyticsArray);
-	const [incomes, setIncomes] = useState<IIncomeOrExpanse>({} as IIncomeOrExpanse);
-	const [expanses, setExpases] = useState<IIncomeOrExpanse>({} as IIncomeOrExpanse);
+	const [incomes, setIncomes] = useState<IIncomeOrExpense>({} as IIncomeOrExpense);
+	const [expenses, setExpases] = useState<IIncomeOrExpense>({} as IIncomeOrExpense);
 	const [exchangeData, setExchangeData] = useState({} as IExchangeSendedData);
-	const [incomeList, setIncomeList] = useState<IIncomeOrExpanse[]>([] as IIncomeOrExpanse[]);
-	const [expanseList, setExpanseList] = useState<IIncomeOrExpanse[]>([] as IIncomeOrExpanse[]);
+	const [incomeList, setIncomeList] = useState<IIncomeOrExpense[]>([] as IIncomeOrExpense[]);
+	const [expenseList, setExpenseList] = useState<IIncomeOrExpense[]>([] as IIncomeOrExpense[]);
 	const [isExpense, setIsExpense] = useState(false);
 	const { isFetching: isFetchingInflation, data: inflation, refetch: fetchInflation } = useQuery('inflation', dataFetch.getInflation, { enabled: false });
 	const { data: convertedCurrency, isFetching: isFetchedConvertCurrency, refetch: refetchConvertCurrency } = useQuery(['convertData', exchangeData], () => dataFetch.convertCurrency(exchangeData), { enabled: false });
 	const { mutate: sendIncome } = useMutation(['sendIncome', incomeList], () => dataFetch.sendUserIncomes(incomeList), { });
-	const { mutate: sendExpanse } = useMutation(['sendExpanse', expanseList], () => dataFetch.sendUserExpanses(expanseList), { });
+	const { mutate: sendExpense } = useMutation(['sendExpense', expenseList], () => dataFetch.sendUserExpenses(expenseList), { });
 	const { data: userIncomes, isFetched: isFetchedUserIncomes, refetch: refetchUserIncomes } = useQuery(['fetchUserIncomes'], () => dataFetch.getUserIncomes(), { enabled: false });
-	const { data: userExpanses, isFetched: isFetchedUserExpanses, refetch: refetchUserExpanses } = useQuery(['fetchUserExpanses'], () => dataFetch.getUserExpanses(), { enabled: false });
+	const { data: userExpenses, isFetched: isFetchedUserExpenses, refetch: refetchUserExpenses } = useQuery(['fetchUserExpenses'], () => dataFetch.getUserExpenses(), { enabled: false });
 
-	const addIncome = (income : IIncomeOrExpanse) => {
+	const addIncome = (income : IIncomeOrExpense) => {
 		const week = getWeek(income.date, { weekStartsOn: 0 });
 		const arrayWeek = weekAnalyticsArray;
 		const arrayMonth = monthlyAnalyticsArray;
@@ -35,17 +35,17 @@ function useDataProvider() {
 		setIncomeList((prev) => [...prev, income]);
 	};
 
-	const addExpanse = (expanse : IIncomeOrExpanse) => {
-		const week = getWeek(expanse.date, { weekStartsOn: 0 });
+	const addExpense = (expense : IIncomeOrExpense) => {
+		const week = getWeek(expense.date, { weekStartsOn: 0 });
 		const arrayWeek = weekAnalyticsArray;
 		const arrayMonth = monthlyAnalyticsArray;
-		const result = parseFloat(arrayWeek[week - 1].valueExpanse.toString()) + parseFloat(expanse.value.toString());
-		const resultInMonth = parseFloat(arrayMonth[expanse.date.getMonth()].valueExpanse.toString()) + parseFloat(expanse.value.toString());
-		arrayWeek[week - 1].valueExpanse = parseFloat(result.toString());
-		arrayWeek[week - 1].date = expanse.date;
-		arrayMonth[expanse.date.getMonth()].valueExpanse = parseFloat(resultInMonth.toString());
-		arrayMonth[expanse.date.getMonth()].date = expanse.date;
-		setExpanseList((prev) => [...prev, expanse]);
+		const result = parseFloat(arrayWeek[week - 1].valueExpense.toString()) + parseFloat(expense.value.toString());
+		const resultInMonth = parseFloat(arrayMonth[expense.date.getMonth()].valueExpense.toString()) + parseFloat(expense.value.toString());
+		arrayWeek[week - 1].valueExpense = parseFloat(result.toString());
+		arrayWeek[week - 1].date = expense.date;
+		arrayMonth[expense.date.getMonth()].valueExpense = parseFloat(resultInMonth.toString());
+		arrayMonth[expense.date.getMonth()].date = expense.date;
+		setExpenseList((prev) => [...prev, expense]);
 	};
 
 	const removeIncome = (id: string) => {
@@ -53,14 +53,14 @@ function useDataProvider() {
 		setIncomeList(tempList);
 	};
 
-	const removeExpanse = (id: string) => {
-		const tempList = expanseList.filter((expanse) => expanse.id !== id);
-		setExpanseList(tempList);
+	const removeExpense = (id: string) => {
+		const tempList = expenseList.filter((expense) => expense.id !== id);
+		setExpenseList(tempList);
 	};
 
-	const saveExpanseAndIncome = () => {
+	const saveExpenseAndIncome = () => {
 		sendIncome();
-		sendExpanse();
+		sendExpense();
 	};
 
 	return {
@@ -70,34 +70,34 @@ function useDataProvider() {
 		analyticsDataMonth,
 		userIncomes,
 		setIncomeList,
-		setExpanseList,
+		setExpenseList,
 		isFetchedUserIncomes,
 		refetchUserIncomes,
-		userExpanses,
-		isFetchedUserExpanses,
-		refetchUserExpanses,
+		userExpenses,
+		isFetchedUserExpenses,
+		refetchUserExpenses,
 		number,
-		saveExpanseAndIncome,
+		saveExpenseAndIncome,
 		fetchInflation,
 		setNumber,
 		inflation: inflation?.data[0].yearly_rate_pct,
 		isFetchingInflation,
 		incomes,
 		setIncomes,
-		expanses,
+		expenses,
 		setExpases,
 		convertedCurrency,
 		isFetchedConvertCurrency,
 		refetchConvertCurrency,
 		exchangeData,
 		setExchangeData,
-		addExpanse,
+		addExpense,
 		addIncome,
-		removeExpanse,
+		removeExpense,
 		removeIncome,
 		incomeList,
-		expanseList,
-		sendExpanse,
+		expenseList,
+		sendExpense,
 		sendIncome,
 	};
 }

@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import React, { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import { initialValues, LoginValidationSchema } from './LoginScreen.validation';

@@ -15,7 +15,7 @@ export interface IExchangeReceivedData {
   new_amount: string
 }
 
-export interface IIncomeOrExpanse {
+export interface IIncomeOrExpense {
   id: string | undefined,
   date: Date,
   value: number,
@@ -26,9 +26,18 @@ export interface IIncomeOrExpanse {
 
 export interface IAnalyticsArray {
   numberOfTimePeriod: number,
-  valueExpanse: number,
+  valueExpense: number,
   valueIncome: number,
   date: Date | undefined,
+}
+
+export interface IConvertedCurrencyData {
+  old_amount: number,
+  new_amount: number,
+}
+
+export interface IUseMutationAxiosResponse {
+  ResponseData: string;
 }
 
 export interface IDataInterface {
@@ -36,36 +45,36 @@ export interface IDataInterface {
   isExpense: boolean,
   analyticsDataWeek: IAnalyticsArray[],
   analyticsDataMonth: IAnalyticsArray[],
-  setIncomeList: React.Dispatch<React.SetStateAction<IIncomeOrExpanse[]>>
-  setExpanseList: React.Dispatch<React.SetStateAction<IIncomeOrExpanse[]>>
+  setIncomeList: React.Dispatch<React.SetStateAction<IIncomeOrExpense[]>>
+  setExpenseList: React.Dispatch<React.SetStateAction<IIncomeOrExpense[]>>
   data?: number;
-  userIncomes: AxiosResponse<any, any> | undefined;
+  userIncomes: AxiosResponse<IIncomeOrExpense[]> | undefined;
   isFetchedUserIncomes: boolean;
-  saveExpanseAndIncome: () => void;
+  saveExpenseAndIncome: () => void;
   refetchUserIncomes: () => void;
-  userExpanses: AxiosResponse<any, any> | undefined;
-  isFetchedUserExpanses: boolean;
-  refetchUserExpanses: () => void;
+  userExpenses: AxiosResponse<IIncomeOrExpense[]> | undefined;
+  isFetchedUserExpenses: boolean;
+  refetchUserExpenses: () => void;
   number: number;
   fetchInflation: () => void;
   setNumber: React.Dispatch<React.SetStateAction<number>>;
   inflation: number;
   isFetchingInflation: boolean;
-  incomes: IIncomeOrExpanse;
-  setIncomes: React.Dispatch<IIncomeOrExpanse>;
-  expanses: IIncomeOrExpanse;
-  setExpases: React.Dispatch<IIncomeOrExpanse>;
-  convertedCurrency: AxiosResponse<any, any> | undefined;
+  incomes: IIncomeOrExpense;
+  setIncomes: React.Dispatch<IIncomeOrExpense>;
+  expenses: IIncomeOrExpense;
+  setExpases: React.Dispatch<IIncomeOrExpense>;
+  convertedCurrency: AxiosResponse<IConvertedCurrencyData> | undefined;
   isFetchedConvertCurrency: boolean;
   refetchConvertCurrency: () => void;
   exchangeData: IExchangeSendedData;
   setExchangeData: React.Dispatch<IExchangeSendedData>;
-  addExpanse: (expanse: IIncomeOrExpanse) => void;
-  addIncome: (income: IIncomeOrExpanse) => void;
-  removeExpanse: (id: string) => void;
+  addExpense: (expense: IIncomeOrExpense) => void;
+  addIncome: (income: IIncomeOrExpense) => void;
+  removeExpense: (id: string) => void;
   removeIncome: (id: string) => void;
-  incomeList: IIncomeOrExpanse[];
-  expanseList: IIncomeOrExpanse[];
-  sendIncome: UseMutateFunction<AxiosResponse<any, any>, unknown, void, unknown>;
-  sendExpanse: UseMutateFunction<AxiosResponse<any, any>, unknown, void, unknown>;
+  incomeList: IIncomeOrExpense[];
+  expenseList: IIncomeOrExpense[];
+  sendIncome: UseMutateFunction<AxiosResponse<IUseMutationAxiosResponse>, unknown, void, unknown>;
+  sendExpense: UseMutateFunction<AxiosResponse<IUseMutationAxiosResponse>, unknown, void, unknown>;
 }

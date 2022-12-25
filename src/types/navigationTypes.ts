@@ -2,7 +2,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NavigationProp, CompositeNavigationProp, NavigatorScreenParams } from '@react-navigation/native';
 
 export type tabParamList = {
-    info: {incomeOrExpanseId: number}|undefined,
+    info: {incomeOrExpenseId: number}|undefined,
 }
 
 export type StackParamList = {

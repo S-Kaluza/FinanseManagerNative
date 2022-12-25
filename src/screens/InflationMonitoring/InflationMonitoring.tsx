@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Dimensions, Pressable, StyleSheet } from 'react-native';
+import { Text, View, Dimensions, Pressable } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { inflationArray } from './InflationMonitoring.initialValues';
 import styles from './InflationMonitoring.styles';

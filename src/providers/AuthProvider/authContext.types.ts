@@ -14,8 +14,8 @@ export interface ILoginData {
 }
 
 export interface IAuthInterface {
-  userToken: AxiosResponse<any, any> | undefined;
-  loginUser: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<AxiosResponse<any, any>, unknown>>;
+  userToken: void | AxiosResponse<any, any> | undefined;
+  loginUser: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<void | AxiosResponse<any, any>, unknown>>;
   registerUser: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<AxiosResponse<any, any>, unknown>>;
   loginData: ILoginData;
   registerData: IRegisterData;
