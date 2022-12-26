@@ -5,6 +5,7 @@ import { CurrencyConverterSchema, initialValues } from './CurrencyConverter.vali
 import { FloatingLabelInput } from 'react-native-floating-label-input';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
 import styles from './CurrencyConverter.styles';
+import i18n from 'i18next';
 
 function CurrencyConverter() {
 	const { setExchangeData, refetchConvertCurrency, convertedCurrency, isFetchedConvertCurrency } = useContext(dataContext);
@@ -21,26 +22,26 @@ function CurrencyConverter() {
 		{isFetchedConvertCurrency? <View style={styles.resultView}><Text style={styles.resultText}>Loading...</Text></View> : <View style={styles.resultView}><Text style={styles.resultText}>{convertedCurrency?.data['new_amount']}</Text></View>}
 		<FloatingLabelInput
 			nativeID='from'
-			label={'from'}
+			label={i18n.t('from')}
 			value={values.from}
 			onChangeText={handleChange('from')}
 		/>
 		<View style={{ height: 10 + '%' }} />
 		<FloatingLabelInput
 			nativeID='to'
-			label={'to'}
+			label={i18n.t('to')}
 			value={values.to}
 			onChangeText={handleChange('to')}
 		/>
 		<View style={{ height: 10 + '%' }} />
 		<FloatingLabelInput
 			nativeID='value'
-			label={'value'}
+			label={i18n.t('value')}
 			value={values.value.toString()}
 			onChangeText={handleChange('value')}
 		/>
 		<View style={{ height: 10 + '%' }} />
-		<Pressable onPress={() => handleSubmit()} style={styles.buttonStyle}><Text style={styles.buttonTextStyle}>Save</Text></Pressable>
+		<Pressable onPress={() => handleSubmit()} style={styles.buttonStyle}><Text style={styles.buttonTextStyle}>{i18n.t('convert')}</Text></Pressable>
 	</View>;
 }
 

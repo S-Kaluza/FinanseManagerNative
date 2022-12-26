@@ -3,6 +3,7 @@ import { Text, View, Dimensions, Pressable } from 'react-native';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
 import { LineChart } from 'react-native-chart-kit';
 import styles from './Analytics.styles';
+import i18n from 'i18next';
 
 export function Analytics(){
 	const [isWeekAnalytics, setIsWeekAnalytics] = useState(false);
@@ -10,7 +11,7 @@ export function Analytics(){
 	const labelsWeek = analyticsDataWeek.map(({ numberOfTimePeriod }) => {
 		return numberOfTimePeriod.toString();
 	});
-	const labelsMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	const labelsMonth = [i18n.t('januaryShort'), i18n.t('februaryShort'), i18n.t('marchShort'), i18n.t('aprilShort'), i18n.t('mayShort'), i18n.t('juneShort'), i18n.t('julyShort'), i18n.t('augustShort'), i18n.t('septemberShort'), i18n.t('octoberShort'), i18n.t('novemberShort'), i18n.t('decemberShort')];
 	const incomeValuesWeek = analyticsDataWeek.map(({ valueIncome }) => {
 		return valueIncome;
 	});
@@ -29,7 +30,7 @@ export function Analytics(){
 	console.log(expenseValuesMonth.length);
 	return (
 		<View>
-			<Text>{!isExpense? 'Income analytics' : 'Expense Analytics'}</Text>
+			<Text style={styles.analyticsHeader}>{!isExpense? i18n.t('incomeAnalytics') : i18n.t('expenseAnalytics')}</Text>
 			<LineChart
 				data={{
 					labels: isWeekAnalytics? labelsWeek : labelsMonth, 
@@ -68,8 +69,8 @@ export function Analytics(){
 					borderRadius: 16
 				}}
 			/>
-			<Pressable onPress={() => setIsExpense(!isExpense)} style={styles.pressableSwitch}><Text>Switch Expense Income</Text></Pressable>
-			<Pressable onPress={() => setIsWeekAnalytics(!isWeekAnalytics)} style={styles.pressableSwitch}><Text>Switch Week and Month</Text></Pressable>
+			<Pressable onPress={() => setIsExpense(!isExpense)} style={styles.pressableSwitch}><Text>{isExpense? i18n.t('switchIncome') : i18n.t('switchExpense')}</Text></Pressable>
+			<Pressable onPress={() => setIsWeekAnalytics(!isWeekAnalytics)} style={styles.pressableSwitch}><Text>{isWeekAnalytics? i18n.t('switchMonth') : i18n.t('switchWeek')}</Text></Pressable>
 		</View>
 	);
 }

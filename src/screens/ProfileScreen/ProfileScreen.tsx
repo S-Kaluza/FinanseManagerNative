@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { styles } from './ProfileScreen.styles';
 import { authContext } from '../../providers/AuthProvider/AuthProvider';
 import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNavigator.types';
-import Constants from 'expo-constants';
 
 function ProfileScreen( { navigation }:  BottomTabScreenPropsWithNavigation) {
 	const { loginStatus, profileData } = useContext(authContext);

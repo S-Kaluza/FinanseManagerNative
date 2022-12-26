@@ -10,6 +10,13 @@ const styles = StyleSheet.create({
 		backgroundColor: 'gray',
 		borderWidth: 2,
 		borderRadius: 16,
+	},
+	analyticsHeader: {
+		marginTop: 20,
+		marginBottom: 30,
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		fontSize: 20,
 	}
 });
 

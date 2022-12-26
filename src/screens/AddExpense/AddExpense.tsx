@@ -7,6 +7,7 @@ import { dataContext } from '../../providers/DataProvider/DataProvider';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { toDate } from 'date-fns';
 import styles from './AddExpense.styles';
+import i18n from 'i18next';
 
 function AddExpense() {
 	const { expenseList, addExpense } = useContext(dataContext);
@@ -29,7 +30,9 @@ function AddExpense() {
 	};
     
 	return <View style={styles.formWrapper}>
+		<Text>{i18n.t('title')}</Text>
 		<FloatingLabelInput
+			key={'name'}
 			nativeID='name'
 			label={'name'}
 			value={values.name}
@@ -37,6 +40,7 @@ function AddExpense() {
 		/>
 		<View style={{ height: 10 + '%' }} />
 		<FloatingLabelInput
+			key={'description'}
 			nativeID='description'
 			label={'description'}
 			value={values.description}
@@ -44,6 +48,7 @@ function AddExpense() {
 		/>
 		<View style={{ height: 10 + '%' }} />
 		<FloatingLabelInput
+			key={'value'}
 			nativeID='value'
 			label={'value'}
 			value={values.value.toString()}
