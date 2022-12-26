@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import { View, Text, ScrollView, Pressable } from 'react-native';
+import { View, Text, ScrollView, Pressable, NativeModules } from 'react-native';
 import IncomeOrExpenseListElement from '../../components/IncomeOrExpenseListElement/IncomeOrExpenseListElement';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
 import styles from './DashboardScreen.styles';
+import i18n from 'i18next';
 
 
 function DashboardScreen( ) {
@@ -16,17 +17,17 @@ function DashboardScreen( ) {
 		<ScrollView>
 			<View><>
 				{isExpense?<>
-					<Text>Expense</Text>
+					<Text style={styles.headerText}>{i18n.t('expenses')}</Text>
 					{expenseList.map(({ id, name, value, date }) => {
-						return <IncomeOrExpenseListElement key={id} date={date} name={name} value={value}  />;
+						return <IncomeOrExpenseListElement id={id} key={id} date={date} name={name} value={value}  />;
 					})}</>:<>
-					<Text>Income</Text>
+					<Text style={styles.headerText}>{i18n.t('incomes')}</Text>
 					{incomeList.map(({ id, name, value, date }) => {
-						return <IncomeOrExpenseListElement key={id} date={date} name={name} value={value}  />;
+						return <IncomeOrExpenseListElement id={id} key={id} date={date} name={name} value={value}  />;
 					})}</>}
 			</>
 			</View>
-			<Pressable onPress={() => setIsExpense(!isExpense)} style={styles.pressableSwitch}><Text>Switch Expense Income</Text></Pressable>
+			<Pressable onPress={() => setIsExpense(!isExpense)} style={styles.pressableSwitch}><Text>{isExpense? i18n.t('switchIncome') : i18n.t('switchExpense')}</Text></Pressable>
 		</ScrollView>
 	</View>;
 }

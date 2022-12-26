@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import { navRouting } from './config';
 import 'react-native-gesture-handler';
+import i18n from 'i18next';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,14 +31,19 @@ export function RootNavigator() {
 						return <Ionicon name={iconName} size={size} color={color} />;
 					},
 				})}>
-					<Tab.Screen name={navRouting[0].name} component={navRouting[0].component} />
-					<Tab.Screen name={navRouting[1].name} component={navRouting[1].component} />
-					<Tab.Screen name={navRouting[2].name} component={navRouting[2].component} />
+					<Tab.Screen name={i18n.t(navRouting[0].name)} component={navRouting[0].component} />
+					<Tab.Screen name={i18n.t(navRouting[1].name)} component={navRouting[1].component} />
+					<Tab.Screen name={i18n.t(navRouting[2].name)} component={navRouting[2].component} />
 					<Tab.Group key={'unvisible'} screenOptions={{ tabBarButton: () => null }}>
-						{navRouting.splice(3, navRouting.length - 1).map((item) => {
-							return <Tab.Screen key={item.name} name={item.name} component={item.component} />;
-						})
-						}
+						<Tab.Screen name={i18n.t(navRouting[4].name)} component={navRouting[4].component} />
+						<Tab.Screen name={i18n.t(navRouting[5].name)} component={navRouting[5].component} />
+						<Tab.Screen name={i18n.t(navRouting[6].name)} component={navRouting[6].component} />
+						<Tab.Screen name={i18n.t(navRouting[7].name)} component={navRouting[7].component} />
+						<Tab.Screen name={i18n.t(navRouting[8].name)} component={navRouting[8].component} />
+						<Tab.Screen name={i18n.t(navRouting[9].name)} component={navRouting[9].component} />
+						<Tab.Screen name={i18n.t(navRouting[10].name)} component={navRouting[10].component} />
+						<Tab.Screen name={i18n.t(navRouting[11].name)} component={navRouting[11].component} />
+						<Tab.Screen name={i18n.t(navRouting[12].name)} component={navRouting[12].component} />
 					</Tab.Group>
 				</Tab.Navigator>
 			</NavigationContainer>

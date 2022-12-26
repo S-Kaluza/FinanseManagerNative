@@ -3,12 +3,12 @@ import { TextInput } from 'react-native';
 import { useFormik } from 'formik';
 import { styles } from './ProfileDataUpdateScreen.styles';
 import { ProfileUpdateValidationSchema } from './ProfileDataUpdateScreen.validation';
-import { View, Text, Pressable, Button } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { authContext } from '../../providers/AuthProvider/AuthProvider';
 
 function ProfileDataUpdateScreen() {
 	const { profileData, setProfileData } = useContext(authContext);
-	const { handleSubmit, values, handleChange, setFieldValue } = useFormik({
+	const { handleSubmit, values, handleChange } = useFormik({
 		initialValues: profileData,
 		validationSchema: ProfileUpdateValidationSchema,
 		onSubmit: () => {

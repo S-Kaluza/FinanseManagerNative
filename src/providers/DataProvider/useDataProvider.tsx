@@ -69,13 +69,13 @@ function useDataProvider() {
 		addExpenseToAsyncStorage(expenseList);
 	};
 
-	const removeIncome = (id: string) => {
+	const removeIncome = (id: string | undefined) => {
 		const tempList = incomeList.filter((income) => income.id !== id);
 		setIncomeList(tempList);
 		addIncomeToAsyncStorage(incomeList);
 	};
 
-	const removeExpense = (id: string) => {
+	const removeExpense = (id: string | undefined) => {
 		const tempList = expenseList.filter((expense) => expense.id !== id);
 		setExpenseList(tempList);
 		addExpenseToAsyncStorage(expenseList);

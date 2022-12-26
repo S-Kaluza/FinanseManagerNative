@@ -77,8 +77,8 @@ export interface IDataInterface {
   setExchangeData: React.Dispatch<IExchangeSendedData>; // function that change exchangeData variable
   addExpense: (expense: IIncomeOrExpense) => void; // function that add expense to expenseList variable
   addIncome: (income: IIncomeOrExpense) => void; // function that add income to incomeList variable
-  removeExpense: (id: string) => void; // function that remove expense from expenseList variable
-  removeIncome: (id: string) => void; // function that remove income from incomeList variable
+  removeExpense: (id: string | undefined) => void; // function that remove expense from expenseList variable
+  removeIncome: (id: string | undefined) => void; // function that remove income from incomeList variable
   incomeList: IIncomeOrExpense[]; // variable that contains array of user incomes
   expenseList: IIncomeOrExpense[]; // variable that contains array of user expenses
   sendIncome: UseMutateFunction<AxiosResponse<IUseMutationAxiosResponse>, unknown, void, unknown>; // function that send income to database

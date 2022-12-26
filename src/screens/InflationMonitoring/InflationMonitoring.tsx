@@ -15,7 +15,6 @@ export function InflationMonitor(){
 	});
 
 	return <View>
-		<Text>Inflation Monitor</Text>
 		<LineChart
 			data={{
 				labels: labels,
