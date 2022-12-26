@@ -9,8 +9,8 @@ function useDataProvider() {
 	const [number, setNumber] = useState<number>(10);
 	const [analyticsDataWeek] = useState(weekAnalyticsArray);
 	const [analyticsDataMonth] = useState(monthlyAnalyticsArray);
-	const [incomes, setIncomes] = useState<IIncomeOrExpense>({} as IIncomeOrExpense);
-	const [expenses, setExpases] = useState<IIncomeOrExpense>({} as IIncomeOrExpense);
+	const [activeIncome, setActiveIncome] = useState<IIncomeOrExpense>({} as IIncomeOrExpense);
+	const [activeExpense, setActiveExpense] = useState<IIncomeOrExpense>({} as IIncomeOrExpense);
 	const [exchangeData, setExchangeData] = useState({} as IExchangeSendedData);
 	const [incomeList, setIncomeList] = useState<IIncomeOrExpense[]>([] as IIncomeOrExpense[]);
 	const [expenseList, setExpenseList] = useState<IIncomeOrExpense[]>([] as IIncomeOrExpense[]);
@@ -82,10 +82,10 @@ function useDataProvider() {
 		setNumber,
 		inflation: inflation?.data[0].yearly_rate_pct,
 		isFetchingInflation,
-		incomes,
-		setIncomes,
-		expenses,
-		setExpases,
+		activeIncome,
+		setActiveIncome,
+		setActiveExpense,
+		activeExpense,
 		convertedCurrency,
 		isFetchedConvertCurrency,
 		refetchConvertCurrency,

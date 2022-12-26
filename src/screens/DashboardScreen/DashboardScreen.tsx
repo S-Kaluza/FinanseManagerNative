@@ -1,16 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableHighlight, Pressable } from 'react-native';
-import Ionicon from 'react-native-vector-icons/Ionicons';
-import LoginScreen from '../LoginScreen/LoginScreen';
-import RegisterScreen from '../RegisterScreen/RegisterScreen';
+import { View, Text, ScrollView, Pressable } from 'react-native';
 import IncomeOrExpenseListElement from '../../components/IncomeOrExpenseListElement/IncomeOrExpenseListElement';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
 import styles from './DashboardScreen.styles';
-import { BottomTabScreenPropsWithNavigation } from './../../navigations/RootNavigator.types';
 
 
-function DashboardScreen({ navigation }: BottomTabScreenPropsWithNavigation ) {
-	const x = true;
+function DashboardScreen( ) {
 	const { expenseList, incomeList, setIsExpense, isExpense } = useContext(dataContext);
 	useEffect(() => console.log(incomeList), [incomeList, expenseList]);
 	return <View>

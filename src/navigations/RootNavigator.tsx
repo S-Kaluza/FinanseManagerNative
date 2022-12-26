@@ -34,15 +34,10 @@ export function RootNavigator() {
 					<Tab.Screen name={navRouting[1].name} component={navRouting[1].component} />
 					<Tab.Screen name={navRouting[2].name} component={navRouting[2].component} />
 					<Tab.Group key={'unvisible'} screenOptions={{ tabBarButton: () => null }}>
-						<Tab.Screen name={navRouting[3].name} component={navRouting[3].component} />
-						<Tab.Screen name={navRouting[4].name} component={navRouting[4].component} />
-						<Tab.Screen name={navRouting[5].name} component={navRouting[5].component} />
-						<Tab.Screen name={navRouting[6].name} component={navRouting[6].component} />
-						<Tab.Screen name={navRouting[7].name} component={navRouting[7].component} />
-						<Tab.Screen name={navRouting[8].name} component={navRouting[8].component} />
-						<Tab.Screen name={navRouting[9].name} component={navRouting[9].component} />
-						<Tab.Screen name={navRouting[10].name} component={navRouting[10].component} />
-						<Tab.Screen name={navRouting[11].name} component={navRouting[11].component} />
+						{navRouting.splice(3, navRouting.length - 1).map((item) => {
+							return <Tab.Screen key={item.name} name={item.name} component={item.component} />;
+						})
+						}
 					</Tab.Group>
 				</Tab.Navigator>
 			</NavigationContainer>

@@ -11,6 +11,7 @@ import CurrencyConverter from '../screens/CurrencyConverter/CurrencyConverter';
 import ExchangeRates from '../screens/ExchangeRates/ExchangeRates';
 import News from '../screens/News/News';
 import InflationMonitor from '../screens/InflationMonitoring/InflationMonitoring';
+import ProfileDataUpdateScreen from '../screens/ProfileDataUpdateScreen/ProfileDataUpdateScreen';
 
 export const navRouting: INavRouting[] = [
 	{
@@ -97,4 +98,11 @@ export const navRouting: INavRouting[] = [
 		component: InflationMonitor,
 		isProtected: false,
 	},
+	{
+		name: 'updateProfile',
+		options: { title: 'updateProfile' },
+		nested: [],
+		component: ProfileDataUpdateScreen,
+		isProtected: false,
+	}
 ];

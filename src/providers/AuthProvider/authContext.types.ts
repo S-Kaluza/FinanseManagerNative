@@ -13,10 +13,23 @@ export interface ILoginData {
   password: string;
 }
 
+export interface IProfileData {
+  username: string;
+  email: string;
+  description: string;
+  profileImage: string;
+  lastUpdate: Date;
+  created: Date;
+  birthDate: Date;
+}
+
 export interface IAuthInterface {
-  userToken: void | AxiosResponse<any, any> | undefined; // variable that contains user token
-  loginUser: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<void | AxiosResponse<any, any>, unknown>>; // function that login user
-  registerUser: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<AxiosResponse<any, any>, unknown>>; // function that register user
+  loginStatus: string; // variable that contains login status
+  profileData: IProfileData; // variable that contains user profile data
+	setProfileData: React.Dispatch<React.SetStateAction<IProfileData>>; // function that change profileData variable
+  userToken: void | AxiosResponse<string> | undefined; // variable that contains user token
+  loginUser: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<void | AxiosResponse<string>, unknown>>; // function that login user
+  registerUser: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<AxiosResponse<string>, unknown>>; // function that register user
   loginData: ILoginData; // variable that contains login data that will be send to server 
   registerData: IRegisterData; // variable that contains register data that will be send to server
   setLoginData: React.Dispatch<React.SetStateAction<ILoginData>>; // function that change loginData variable

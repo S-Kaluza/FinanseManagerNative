@@ -1,6 +1,6 @@
-import { IAnalyticsArray } from './dataContext.types';
+import { IAnalyticsObject } from './dataContext.types';
 
-export const weekAnalyticsArray: IAnalyticsArray[] = [
+export const weekAnalyticsArray: IAnalyticsObject[] = [
 	{
 		numberOfTimePeriod: 1,
 		valueExpense: 0,
@@ -315,7 +315,7 @@ export const weekAnalyticsArray: IAnalyticsArray[] = [
 	},
 ];
 
-export const monthlyAnalyticsArray: IAnalyticsArray[] = [
+export const monthlyAnalyticsArray: IAnalyticsObject[] = [
 	{
 		numberOfTimePeriod: 1,
 		valueExpense: 0,
