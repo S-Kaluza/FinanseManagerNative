@@ -1,23 +1,23 @@
 import axios from 'axios';
-import { IExchangeSendedData, IIncomeOrExpanse } from '../providers/DataProvider/dataContext.types';
-import CookieManager from '@react-native-cookies/cookies';
+import { IExchangeSendedData, IIncomeOrExpense } from '../providers/DataProvider/dataContext.types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
 
 export const dataFetch = {
 	async getInflation() {
 		const res = await axios({
-			url: 'https://api.api-ninjas.com/v1/inflation?country=poland',
+			url: Constants.manifest.extra.INFLATION_API_URL + 'poland',
 			headers: {
-				'X-Api-Key': 'ofHch3J2V+Esbh75mbiXhg==CDJFYF2LaS2V1KY3',
+				'X-Api-Key': Constants.manifest?.extra.NINJAS_API_KEY,
 			},
 		});
 		return res;
 	},
 	async convertCurrency(exchangeData: IExchangeSendedData) {
 		const res = await axios({
-			url: `https://api.api-ninjas.com/v1/convertcurrency?have=${exchangeData.have}&want=${exchangeData.want}&amount=${exchangeData.amount}`,
+			url: Constants.manifest.extra.CONVERT_CURRENCY_API_URL + `have=${exchangeData.have}&want=${exchangeData.want}&amount=${exchangeData.amount}`,
 			headers: {
-				'X-Api-Key': 'ofHch3J2V+Esbh75mbiXhg==CDJFYF2LaS2V1KY3',
+				'X-Api-Key': Constants.manifest?.extra.NINJAS_API_KEY,
 			},
 		});
 		return res;
@@ -37,10 +37,10 @@ export const dataFetch = {
 		console.log(JSON.parse(res.data[0]));
 		return res;
 	},
-	async getUserExpanses() {
+	async getUserExpenses() {
 		const token = await AsyncStorage.getItem('token');
 		const res = await axios({
-			url: 'https://localhost:8001/api/user/expanse',
+			url: 'https://localhost:8001/api/user/expense',
 			method: 'GET',
 			headers: {
 				'X-Token': token,
@@ -50,14 +50,14 @@ export const dataFetch = {
 		});
 		return res;
 	},
-	async sendUserExpanses(data: IIncomeOrExpanse[]) {
+	async sendUserExpenses(data: IIncomeOrExpense[]) {
 		const token = await AsyncStorage.getItem('token');
 		const bodyFormData = new FormData();
 		const dataString = await JSON.stringify(data);
-		bodyFormData.append('Expanse', dataString);
+		bodyFormData.append('Expense', dataString);
 		console.log(bodyFormData);
 		const res = await axios({
-			url: 'https://localhost:8001/api/user/expanse',
+			url: 'https://localhost:8001/api/user/expense',
 			method: 'POST',
 			headers: {
 				'X-Token': token,
@@ -68,7 +68,7 @@ export const dataFetch = {
 		});
 		return res;
 	},
-	async sendUserIncomes(data: IIncomeOrExpanse[]) {
+	async sendUserIncomes(data: IIncomeOrExpense[]) {
 		const token = await AsyncStorage.getItem('token');
 		const bodyFormData = new FormData();
 		const dataString = await JSON.stringify(data);

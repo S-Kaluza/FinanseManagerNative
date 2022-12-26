@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Text, View, ScrollView, Dimensions, Pressable, StyleSheet } from 'react-native';
+import { Text, View, Dimensions, Pressable } from 'react-native';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
 import { LineChart } from 'react-native-chart-kit';
 import styles from './Analytics.styles';
@@ -14,24 +14,22 @@ export function Analytics(){
 	const incomeValuesWeek = analyticsDataWeek.map(({ valueIncome }) => {
 		return valueIncome;
 	});
-	const expenseValuesWeek = analyticsDataWeek.map(({ valueExpanse }) => {
-		return valueExpanse;
+	const expenseValuesWeek = analyticsDataWeek.map(({ valueExpense }) => {
+		return valueExpense;
 	});
 
 	const incomeValuesMonth = analyticsDataMonth.map(({ valueIncome }) => {
 		return valueIncome;
 	});
 
-	const expenseValuesMonth = analyticsDataMonth.map(({ valueExpanse }) => {
-		return valueExpanse;
+	const expenseValuesMonth = analyticsDataMonth.map(({ valueExpense }) => {
+		return valueExpense;
 	});
-	const isWeek = false;
 	console.log(labelsMonth.length);
 	console.log(expenseValuesMonth.length);
-	//TODO correct name of variable Expanse to Expense
 	return (
 		<View>
-			<Text>{!isExpense? 'Income analytics' : 'Expanse Analytics'}</Text>
+			<Text>{!isExpense? 'Income analytics' : 'Expense Analytics'}</Text>
 			<LineChart
 				data={{
 					labels: isWeekAnalytics? labelsWeek : labelsMonth, 
@@ -70,7 +68,7 @@ export function Analytics(){
 					borderRadius: 16
 				}}
 			/>
-			<Pressable onPress={() => setIsExpense(!isExpense)} style={styles.pressableSwitch}><Text>Switch Expanse Income</Text></Pressable>
+			<Pressable onPress={() => setIsExpense(!isExpense)} style={styles.pressableSwitch}><Text>Switch Expense Income</Text></Pressable>
 			<Pressable onPress={() => setIsWeekAnalytics(!isWeekAnalytics)} style={styles.pressableSwitch}><Text>Switch Week and Month</Text></Pressable>
 		</View>
 	);

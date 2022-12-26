@@ -3,6 +3,15 @@
     "name": "Finanse_Manager_Native",
     "slug": "Finanse_Manager_Native",
     "version": "1.0.0",
+    "extra": {
+      "REGISTER_URL": "registerURL",
+      "LOGIN_URL": "loginURL",
+      "INFLATION_API_URL": "https://api.api-ninjas.com/v1/inflation?country=",
+      "CONVERT_CURRENCY_API_URL": "https://api.api-ninjas.com/v1/convertcurrency?",
+      "INCOME_URL": "incomeURL",
+      "EXPENSE_URL": "expenseURL",
+      "NINJAS_API_KEY": "ofHch3J2V+Esbh75mbiXhg==CDJFYF2LaS2V1KY3"
+    },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

@@ -7,7 +7,7 @@ export const initialValues = {
 	date: new Date(),
 };
 
-export const AddExpanseValidationSchema = Yup.object().shape({
+export const AddExpenseValidationSchema = Yup.object().shape({
 	name: Yup.string().required('Required'),
 	description: Yup.string(),
 	value: Yup.number(),

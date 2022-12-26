@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import { Text } from 'react-native';
 
 export function ExchangeRates(){
 	return <Text>it is ExchangeRates</Text>;
