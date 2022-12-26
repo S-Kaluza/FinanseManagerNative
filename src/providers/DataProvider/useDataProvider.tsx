@@ -4,6 +4,7 @@ import { dataFetch } from '../../api/dataApi';
 import { IExchangeSendedData, IIncomeOrExpense } from './dataContext.types';
 import { monthlyAnalyticsArray, weekAnalyticsArray } from './dataContext.initialValues';
 import { getWeek } from 'date-fns';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function useDataProvider() {
 	const [number, setNumber] = useState<number>(10);
@@ -22,6 +23,24 @@ function useDataProvider() {
 	const { data: userIncomes, isFetched: isFetchedUserIncomes, refetch: refetchUserIncomes } = useQuery(['fetchUserIncomes'], () => dataFetch.getUserIncomes(), { enabled: false });
 	const { data: userExpenses, isFetched: isFetchedUserExpenses, refetch: refetchUserExpenses } = useQuery(['fetchUserExpenses'], () => dataFetch.getUserExpenses(), { enabled: false });
 
+	const addIncomeToAsyncStorage = async (income : IIncomeOrExpense[]) => {
+		try {
+			const jsonValue = JSON.stringify(income);
+			await AsyncStorage.setItem('incomeArray', jsonValue);
+		} catch(e) {
+			console.log(e);
+		}
+	};
+
+	const addExpenseToAsyncStorage = async (expense : IIncomeOrExpense[]) => {
+		try {
+			const jsonValue = JSON.stringify(expense);
+			await AsyncStorage.setItem('expenseArray', jsonValue);
+		} catch(e) {
+			console.log(e);
+		}
+	};
+
 	const addIncome = (income : IIncomeOrExpense) => {
 		const week = getWeek(income.date, { weekStartsOn: 0 });
 		const arrayWeek = weekAnalyticsArray;
@@ -33,6 +52,7 @@ function useDataProvider() {
 		arrayMonth[income.date.getMonth()].valueIncome = parseFloat(resultInMonth.toString());
 		arrayMonth[income.date.getMonth()].date = income.date;
 		setIncomeList((prev) => [...prev, income]);
+		addIncomeToAsyncStorage(incomeList);
 	};
 
 	const addExpense = (expense : IIncomeOrExpense) => {
@@ -46,16 +66,19 @@ function useDataProvider() {
 		arrayMonth[expense.date.getMonth()].valueExpense = parseFloat(resultInMonth.toString());
 		arrayMonth[expense.date.getMonth()].date = expense.date;
 		setExpenseList((prev) => [...prev, expense]);
+		addExpenseToAsyncStorage(expenseList);
 	};
 
 	const removeIncome = (id: string) => {
 		const tempList = incomeList.filter((income) => income.id !== id);
 		setIncomeList(tempList);
+		addIncomeToAsyncStorage(incomeList);
 	};
 
 	const removeExpense = (id: string) => {
 		const tempList = expenseList.filter((expense) => expense.id !== id);
 		setExpenseList(tempList);
+		addExpenseToAsyncStorage(expenseList);
 	};
 
 	const saveExpenseAndIncome = () => {
@@ -63,7 +86,23 @@ function useDataProvider() {
 		sendExpense();
 	};
 
+	const getIncomeAndExpenseFromAsyncStorage = async () => {
+		try {
+			const income = await AsyncStorage.getItem('incomeArray');
+			const expense = await AsyncStorage.getItem('expenseArray');
+			if (income !== null) {
+				setIncomeList(JSON.parse(income));
+			}
+			if (expense !== null) {
+				setExpenseList(JSON.parse(expense));
+			}
+		} catch(e) {
+			console.log(e);
+		}
+	};
+
 	return {
+		getIncomeAndExpenseFromAsyncStorage,
 		isExpense,
 		setIsExpense,
 		analyticsDataWeek,
