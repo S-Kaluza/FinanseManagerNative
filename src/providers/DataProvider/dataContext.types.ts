@@ -47,6 +47,7 @@ export interface IUseMutationAxiosResponse {
 }
 
 export interface IDataInterface {
+  getIncomeAndExpenseFromAsyncStorage: () => void; // function that fetch user incomes and expenses from local storage
   setIsExpense: React.Dispatch<React.SetStateAction<boolean>> // function that change isExpense variable
   isExpense: boolean, // boolean variable that change display income or expense list
   analyticsDataWeek: IAnalyticsObject[], // array of objects that contains data for analytics chart for week

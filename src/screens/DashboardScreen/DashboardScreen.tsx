@@ -6,8 +6,12 @@ import styles from './DashboardScreen.styles';
 
 
 function DashboardScreen( ) {
-	const { expenseList, incomeList, setIsExpense, isExpense } = useContext(dataContext);
-	useEffect(() => console.log(incomeList), [incomeList, expenseList]);
+	const { expenseList, incomeList, setIsExpense, isExpense, getIncomeAndExpenseFromAsyncStorage } = useContext(dataContext);
+	useEffect(() => {
+		if(expenseList.length === 0 && incomeList.length === 0) {
+			getIncomeAndExpenseFromAsyncStorage();
+		}
+	}, []);
 	return <View>
 		<ScrollView>
 			<View><>
