@@ -8,8 +8,6 @@ import AddExpense from '../screens/AddExpenseScreen/AddExpenseScreen';
 import AddIncome from '../screens/AddIncome/AddIncomeScreen';
 import Analytics from '../screens/Analytics/AnalyticsScreen';
 import CurrencyConverter from '../screens/CurrencyConverter/CurrencyConverterScreen';
-import ExchangeRates from '../screens/ExchangeRates/ExchangeRatesScreen';
-import News from '../screens/News/News';
 import InflationMonitor from '../screens/InflationMonitoring/InflationMonitoringScreen';
 import ProfileDataUpdateScreen from '../screens/ProfileDataUpdateScreen/ProfileDataUpdateScreen';
 
@@ -75,20 +73,6 @@ export const navRouting: INavRouting[] = [
 		options: { title: 'show CurrencyConverter' },
 		nested: [],
 		component: CurrencyConverter,
-		isProtected: false,
-	},
-	{
-		name: 'ExchangeRates',
-		options: { title: 'show ExchangeRates' },
-		nested: [],
-		component: ExchangeRates,
-		isProtected: false,
-	},
-	{
-		name: 'News',
-		options: { title: 'show News' },
-		nested: [],
-		component: News,
 		isProtected: false,
 	},
 	{
