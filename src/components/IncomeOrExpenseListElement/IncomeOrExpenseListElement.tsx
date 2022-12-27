@@ -4,19 +4,19 @@ import { IIncomeOrExpenseListElementProps } from './IncomeOrExpenseListElement.t
 import { format } from 'date-fns';
 import styles from './IncomeOrExpenseListElement.styles';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
+import Ionicon from 'react-native-vector-icons/Ionicons';
 
 function IncomeOrExpenseListElement({ date, name, value, id } : IIncomeOrExpenseListElementProps) {
-	console.log('IncomeOrExpenseListElement');
 	const { removeExpense, removeIncome } = useContext(dataContext);
 	return (
 		<View style={styles.wrapper}>
 			<Text style={styles.textDate}>{date? format(Date.parse(date.toString()), 'RRRR-MM-dd') : date}</Text>
 			<Text style={styles.textDate}>{name}</Text>
 			<Text style={styles.textDate}>{value}</Text>
-			<Pressable onPress={() => {
+			<Pressable style={styles.deleteButton} onPress={() => {
 				removeExpense(id);
 				removeIncome(id);
-			}}><Text>delete</Text></Pressable>
+			}}><Ionicon name='trash' color={'black'} size={30}></Ionicon></Pressable>
 		</View>
 	);
 }

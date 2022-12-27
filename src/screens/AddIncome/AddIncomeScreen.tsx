@@ -1,21 +1,20 @@
 import { View, Text, Pressable } from 'react-native';
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
-import { initialValues, AddIncomeValidationSchema } from './AddIncome.validation';
+import { initialValues, AddIncomeValidationSchema } from './AddIncomeScreen.validation';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { toDate } from 'date-fns';
-import styles from './AddIncome.styles';
+import styles from './AddIncomeScreen.styles';
 
-function AddIncome() {
-	const { incomeList, addIncome } = useContext(dataContext);
+function AddIncomeScreen() {
+	const { incomeList, addIncome, getNextId } = useContext(dataContext);
 	const { handleSubmit, values, handleChange, setFieldValue } = useFormik({
 		initialValues,
 		validationSchema: AddIncomeValidationSchema,
 		onSubmit: () => {
-			addIncome({ id: 'ex' + incomeList.length, connected: [], name: values.name, value: values.value, date: values.date, description: values.description });
-			console.log(incomeList);
+			addIncome({ id: 'in' + getNextId(incomeList), connected: [], name: values.name, value: values.value, date: values.date, description: values.description });
 		},
 	});
 
@@ -57,4 +56,4 @@ function AddIncome() {
 	</View>;
 }
 
-export default AddIncome;
+export default AddIncomeScreen;

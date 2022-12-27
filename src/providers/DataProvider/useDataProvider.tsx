@@ -10,8 +10,6 @@ function useDataProvider() {
 	const [number, setNumber] = useState<number>(10);
 	const [analyticsDataWeek] = useState(weekAnalyticsArray);
 	const [analyticsDataMonth] = useState(monthlyAnalyticsArray);
-	const [activeIncome, setActiveIncome] = useState<IIncomeOrExpense>({} as IIncomeOrExpense);
-	const [activeExpense, setActiveExpense] = useState<IIncomeOrExpense>({} as IIncomeOrExpense);
 	const [exchangeData, setExchangeData] = useState({} as IExchangeSendedData);
 	const [incomeList, setIncomeList] = useState<IIncomeOrExpense[]>([] as IIncomeOrExpense[]);
 	const [expenseList, setExpenseList] = useState<IIncomeOrExpense[]>([] as IIncomeOrExpense[]);
@@ -53,6 +51,7 @@ function useDataProvider() {
 		arrayMonth[income.date.getMonth()].date = income.date;
 		setIncomeList((prev) => [...prev, income]);
 		addIncomeToAsyncStorage(incomeList);
+		saveExpenseAndIncome();
 	};
 
 	const addExpense = (expense : IIncomeOrExpense) => {
@@ -67,18 +66,21 @@ function useDataProvider() {
 		arrayMonth[expense.date.getMonth()].date = expense.date;
 		setExpenseList((prev) => [...prev, expense]);
 		addExpenseToAsyncStorage(expenseList);
+		saveExpenseAndIncome();
 	};
 
 	const removeIncome = (id: string | undefined) => {
 		const tempList = incomeList.filter((income) => income.id !== id);
 		setIncomeList(tempList);
 		addIncomeToAsyncStorage(incomeList);
+		saveExpenseAndIncome();
 	};
 
 	const removeExpense = (id: string | undefined) => {
 		const tempList = expenseList.filter((expense) => expense.id !== id);
 		setExpenseList(tempList);
 		addExpenseToAsyncStorage(expenseList);
+		saveExpenseAndIncome();
 	};
 
 	const saveExpenseAndIncome = () => {
@@ -101,7 +103,26 @@ function useDataProvider() {
 		}
 	};
 
+	const synchroniseData = async () => {
+		await refetchUserIncomes();
+		await refetchUserExpenses();
+		const inc = await JSON.parse(JSON.stringify(userIncomes?.data));
+		const exp = await JSON.parse(JSON.stringify(userExpenses?.data));
+		setIncomeList(inc);
+		setExpenseList(exp);
+	};
+
+	const getNextId = (list: IIncomeOrExpense[]) => {
+		if(list.length === 0) return 1;
+		const lastElement = list[list.length - 1];
+		if (lastElement.id?.length) {
+			return  (parseInt(lastElement.id.slice(2)) + 1);
+		} else return 1;
+	};
+
 	return {
+		getNextId,
+		synchroniseData,
 		getIncomeAndExpenseFromAsyncStorage,
 		isExpense,
 		setIsExpense,
@@ -121,10 +142,6 @@ function useDataProvider() {
 		setNumber,
 		inflation: inflation?.data[0].yearly_rate_pct,
 		isFetchingInflation,
-		activeIncome,
-		setActiveIncome,
-		setActiveExpense,
-		activeExpense,
 		convertedCurrency,
 		isFetchedConvertCurrency,
 		refetchConvertCurrency,
