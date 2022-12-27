@@ -24,6 +24,7 @@ function LoginScreen({ navigation } : BottomTabScreenPropsWithNavigation) {
 			loginUserFunc();
 		},
 	});
+	
 	return <View style={styles.formWrapper}>
 		<Text>{isLoadingUser? i18n.t('loading') : ''}</Text>
 		<FloatingLabelInput

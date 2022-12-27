@@ -11,6 +11,7 @@ import styles from './MenuScreen.styles';
 import i18n from 'i18next';
 
 function MenuScreen({ navigation }: BottomTabScreenPropsWithNavigation) {
+	
 	return <View style={styles.wrapper}>
 		<Pressable onPress={() => navigation.navigate(i18n.t('AddIncome'), { screen: AddIncome })} style={styles.tile}><Ionicon name='add-circle' color={'black'} size={75} style={styles.icons}></Ionicon><Text style={styles.texts}>{i18n.t('AddIncome')}</Text></Pressable>
 		<Pressable onPress={() => navigation.navigate(i18n.t('AddExpense'), { screen: AddExpense })} style={styles.tile}><Ionicon name='add-circle' color={'white'} size={75} style={styles.icons}></Ionicon><Text style={styles.texts}>{i18n.t('AddExpense')}</Text></Pressable>

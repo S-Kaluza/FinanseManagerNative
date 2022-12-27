@@ -17,6 +17,7 @@ function DashboardScreen( { navigation } : BottomTabScreenPropsWithNavigation ) 
 			getIncomeAndExpenseFromAsyncStorage();
 		}
 	}, [expenseList, incomeList]);
+	
 	return <View>
 		<ScrollView>
 			<View><>
