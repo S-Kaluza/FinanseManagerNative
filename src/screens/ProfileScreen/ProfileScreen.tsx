@@ -10,6 +10,7 @@ import { dataContext } from '../../providers/DataProvider/DataProvider';
 function ProfileScreen( { navigation }:  BottomTabScreenPropsWithNavigation) {
 	const { profileData, removeTokenFromLocalStorage, isLogin } = useContext(authContext);
 	const { synchroniseData } = useContext(dataContext);
+	
 	return <View>
 		<ScrollView>
 			<Image style={{ width: '100%', height: 250 }} source={{ uri: 'https://picsum.photos/200/300' }} />

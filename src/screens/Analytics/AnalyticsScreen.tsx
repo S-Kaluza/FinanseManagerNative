@@ -26,6 +26,7 @@ export function AnalyticsScreen(){
 	const expenseValuesMonth = analyticsDataMonth.map(({ valueExpense }) => {
 		return valueExpense;
 	});
+	
 	return (
 		<View>
 			<Text style={styles.analyticsHeader}>{!isExpense? i18n.t('incomeAnalytics') : i18n.t('expenseAnalytics')}</Text>
