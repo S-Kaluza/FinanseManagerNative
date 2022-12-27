@@ -7,8 +7,6 @@ import AddExpense from '../AddExpenseScreen/AddExpenseScreen';
 import Analytics from '../Analytics/AnalyticsScreen';
 import CurrencyConverter from '../CurrencyConverter/CurrencyConverterScreen';
 import InflationMonitor from '../InflationMonitoring/InflationMonitoringScreen';
-import ExchangeRates from '../ExchangeRates/ExchangeRatesScreen';
-import News from '../News/News';
 import styles from './MenuScreen.styles';
 import i18n from 'i18next';
 

@@ -43,8 +43,6 @@ export function RootNavigator() {
 						<Tab.Screen name={i18n.t(navRouting[8].name)} component={navRouting[8].component} />
 						<Tab.Screen name={i18n.t(navRouting[9].name)} component={navRouting[9].component} />
 						<Tab.Screen name={i18n.t(navRouting[10].name)} component={navRouting[10].component} />
-						<Tab.Screen name={i18n.t(navRouting[11].name)} component={navRouting[11].component} />
-						<Tab.Screen name={i18n.t(navRouting[12].name)} component={navRouting[12].component} />
 					</Tab.Group>
 				</Tab.Navigator>
 			</NavigationContainer>
