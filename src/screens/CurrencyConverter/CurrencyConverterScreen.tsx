@@ -1,13 +1,13 @@
 import { View, Text, Pressable } from 'react-native';
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
-import { CurrencyConverterSchema, initialValues } from './CurrencyConverter.validation';
+import { CurrencyConverterSchema, initialValues } from './CurrencyConverterScreen.validation';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
-import styles from './CurrencyConverter.styles';
+import styles from './CurrencyConverterScreen.styles';
 import i18n from 'i18next';
 
-function CurrencyConverter() {
+function CurrencyConverterScreen() {
 	const { setExchangeData, refetchConvertCurrency, convertedCurrency, isFetchedConvertCurrency } = useContext(dataContext);
 	const { handleSubmit, values, handleChange } = useFormik({
 		initialValues,
@@ -45,4 +45,4 @@ function CurrencyConverter() {
 	</View>;
 }
 
-export default CurrencyConverter;
+export default CurrencyConverterScreen;

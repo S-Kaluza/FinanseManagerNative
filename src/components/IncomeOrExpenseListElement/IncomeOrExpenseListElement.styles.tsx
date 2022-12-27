@@ -13,6 +13,14 @@ const styles = StyleSheet.create({
 		marginTop: 'auto',
 		marginBottom: 'auto',
 	},
+	deleteButton: {
+		marginTop: 'auto',
+		marginBottom: 'auto',
+		marginLeft: 'auto',
+		marginRight: 20,
+		backgroundColor: 'gray',
+
+	}
 });
 
 export default styles;

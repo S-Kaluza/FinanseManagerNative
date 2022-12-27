@@ -45,6 +45,11 @@ const styles = StyleSheet.create({
 		marginLeft: 'auto',
 		marginRight: 'auto',
 		fontSize: 20,
+	},
+	AddIcons: {
+		marginTop: 20,
+		marginLeft: 'auto',
+		marginRight: 'auto',
 	}
 });
 

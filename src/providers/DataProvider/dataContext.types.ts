@@ -47,6 +47,8 @@ export interface IUseMutationAxiosResponse {
 }
 
 export interface IDataInterface {
+  getNextId: (list: IIncomeOrExpense[]) => number; // function that return next id for income or expense without prefix
+  synchroniseData: () => void; // function that synchronise data between local storage and database
   getIncomeAndExpenseFromAsyncStorage: () => void; // function that fetch user incomes and expenses from local storage
   setIsExpense: React.Dispatch<React.SetStateAction<boolean>> // function that change isExpense variable
   isExpense: boolean, // boolean variable that change display income or expense list
@@ -54,11 +56,11 @@ export interface IDataInterface {
   analyticsDataMonth: IAnalyticsObject[], // array of objects that contains data for analytics chart for month
   setIncomeList: React.Dispatch<React.SetStateAction<IIncomeOrExpense[]>> // function that change incomeList variable
   setExpenseList: React.Dispatch<React.SetStateAction<IIncomeOrExpense[]>> // function that change expenseList variable
-  userIncomes: AxiosResponse<IIncomeOrExpense[]> | undefined; // variable that contains data about user incomes
+  userIncomes: void | AxiosResponse<any, any> | undefined; // variable that contains data about user incomes
   isFetchedUserIncomes: boolean; // boolean variable that change display loading spinner
   saveExpenseAndIncome: () => void; // function that save expense and income in database
   refetchUserIncomes: () => void; // function that refetch user incomes
-  userExpenses: AxiosResponse<IIncomeOrExpense[]> | undefined; // variable that contains data about user expenses
+  userExpenses: void | AxiosResponse<any, any> | undefined; // variable that contains data about user expenses
   isFetchedUserExpenses: boolean; // boolean variable that change display loading spinner if user expenses is fetching
   refetchUserExpenses: () => void; // function that refetch user expenses
   number: number; // variable that contains number of time period for analytics chart
@@ -66,10 +68,6 @@ export interface IDataInterface {
   setNumber: React.Dispatch<React.SetStateAction<number>>; // function that change number variable that contains number of time period for analytics chart
   inflation: number; // variable that contains inflation data
   isFetchingInflation: boolean; // boolean variable that change display loading spinner if inflation data is fetching
-  activeIncome: IIncomeOrExpense; // variable that contains data about the income
-  setActiveIncome: React.Dispatch<IIncomeOrExpense>; // function that change incomes variable
-  activeExpense: IIncomeOrExpense; // variable that contains data about the expense
-  setActiveExpense: React.Dispatch<IIncomeOrExpense>; // function that change expenses variable
   convertedCurrency: AxiosResponse<IConvertedCurrencyData> | undefined; // variable that contains data about converted currency
   isFetchedConvertCurrency: boolean; // boolean variable that change display loading spinner if converted currency is fetching
   refetchConvertCurrency: () => void; // function that refetch converted currency
@@ -81,6 +79,6 @@ export interface IDataInterface {
   removeIncome: (id: string | undefined) => void; // function that remove income from incomeList variable
   incomeList: IIncomeOrExpense[]; // variable that contains array of user incomes
   expenseList: IIncomeOrExpense[]; // variable that contains array of user expenses
-  sendIncome: UseMutateFunction<AxiosResponse<IUseMutationAxiosResponse>, unknown, void, unknown>; // function that send income to database
-  sendExpense: UseMutateFunction<AxiosResponse<IUseMutationAxiosResponse>, unknown, void, unknown>; // function that send expense to database
+  sendIncome: UseMutateFunction<AxiosResponse<any, any> | undefined, unknown, void, unknown>; // function that send income to database
+  sendExpense: UseMutateFunction<AxiosResponse<any, any> | undefined, unknown, void, unknown>; // function that send expense to database
 }

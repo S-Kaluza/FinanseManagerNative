@@ -1,22 +1,21 @@
 import { View, Text, Pressable } from 'react-native';
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
-import { initialValues, AddExpenseValidationSchema } from './AddExpense.validation';
+import { initialValues, AddExpenseValidationSchema } from './AddExpenseScreen.validation';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { toDate } from 'date-fns';
-import styles from './AddExpense.styles';
+import styles from './AddExpenseScreen.styles';
 import i18n from 'i18next';
 
-function AddExpense() {
-	const { expenseList, addExpense } = useContext(dataContext);
+function AddExpenseScreen() {
+	const { expenseList, addExpense, getNextId } = useContext(dataContext);
 	const { handleSubmit, values, handleChange, setFieldValue } = useFormik({
 		initialValues,
 		validationSchema: AddExpenseValidationSchema,
 		onSubmit: () => {
-			addExpense({ id: 'ex' + expenseList.length, connected: [], name: values.name, value: values.value, date: values.date, description: values.description });
-			console.log(expenseList);
+			addExpense({ id: 'ex' + getNextId(expenseList), connected: [], name: values.name, value: values.value, date: values.date, description: values.description });
 		},
 	});
 	const dataPickerShowMode = (currentMode: any) => {
@@ -61,4 +60,4 @@ function AddExpense() {
 	</View>;
 }
 
-export default AddExpense;
+export default AddExpenseScreen;

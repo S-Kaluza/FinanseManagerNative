@@ -4,13 +4,13 @@ import RegisterScreen from '../screens/RegisterScreen/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import { INavRouting } from './RootNavigator.types';
 import MenuScreen from '../screens/MenuScreen/MenuScreen';
-import AddExpense from '../screens/AddExpense/AddExpense';
-import AddIncome from '../screens/AddIncome/AddIncome';
-import Analytics from '../screens/Analytics/Analytics';
-import CurrencyConverter from '../screens/CurrencyConverter/CurrencyConverter';
-import ExchangeRates from '../screens/ExchangeRates/ExchangeRates';
+import AddExpense from '../screens/AddExpenseScreen/AddExpenseScreen';
+import AddIncome from '../screens/AddIncome/AddIncomeScreen';
+import Analytics from '../screens/Analytics/AnalyticsScreen';
+import CurrencyConverter from '../screens/CurrencyConverter/CurrencyConverterScreen';
+import ExchangeRates from '../screens/ExchangeRates/ExchangeRatesScreen';
 import News from '../screens/News/News';
-import InflationMonitor from '../screens/InflationMonitoring/InflationMonitoring';
+import InflationMonitor from '../screens/InflationMonitoring/InflationMonitoringScreen';
 import ProfileDataUpdateScreen from '../screens/ProfileDataUpdateScreen/ProfileDataUpdateScreen';
 
 export const navRouting: INavRouting[] = [
@@ -99,8 +99,8 @@ export const navRouting: INavRouting[] = [
 		isProtected: false,
 	},
 	{
-		name: 'updateProfile',
-		options: { title: 'updateProfile' },
+		name: 'UpdateProfile',
+		options: { title: 'UpdateProfile' },
 		nested: [],
 		component: ProfileDataUpdateScreen,
 		isProtected: false,

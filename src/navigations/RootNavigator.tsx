@@ -35,6 +35,7 @@ export function RootNavigator() {
 					<Tab.Screen name={i18n.t(navRouting[1].name)} component={navRouting[1].component} />
 					<Tab.Screen name={i18n.t(navRouting[2].name)} component={navRouting[2].component} />
 					<Tab.Group key={'unvisible'} screenOptions={{ tabBarButton: () => null }}>
+						<Tab.Screen name={i18n.t(navRouting[3].name)} component={navRouting[3].component} />
 						<Tab.Screen name={i18n.t(navRouting[4].name)} component={navRouting[4].component} />
 						<Tab.Screen name={i18n.t(navRouting[5].name)} component={navRouting[5].component} />
 						<Tab.Screen name={i18n.t(navRouting[6].name)} component={navRouting[6].component} />

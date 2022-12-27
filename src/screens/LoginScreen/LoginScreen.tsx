@@ -1,26 +1,31 @@
 import { View, Text, Pressable } from 'react-native';
 import React, { useContext, useState } from 'react';
 import { useFormik } from 'formik';
-import { initialValues, LoginValidationSchema } from './LoginScreen.validation';
+import { LoginValidationSchema } from './LoginScreen.validation';
 import { authContext } from '../../providers/AuthProvider/AuthProvider';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
+import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNavigator.types';
 import styles from './LoginScreen.styles';
+import i18n from 'i18next';
+import { useEffect } from 'react';
+import ProfileScreen from '../ProfileScreen/ProfileScreen';
 
-function LoginScreen() {
-	const { loginUser, setLoginData, userToken, isLoadingUser } = useContext(authContext);
+function LoginScreen({ navigation } : BottomTabScreenPropsWithNavigation) {
+	const { setLoginData, isLoadingUser, isLogin, loginUserFunc, loginData } = useContext(authContext);
 	const [show] = useState(false);
+	useEffect(() => {
+		navigation.navigate(i18n.t('Profile'), { screen: ProfileScreen });
+	}, [isLogin]);
 	const { handleSubmit, values, handleChange } = useFormik({
-		initialValues,
+		initialValues: loginData,
 		validationSchema: LoginValidationSchema,
 		onSubmit: () => {
 			setLoginData({ email: values.email, password: values.password });
-			loginUser();
-			console.log('działa');
+			loginUserFunc();
 		},
 	});
 	return <View style={styles.formWrapper}>
-		<Text>{userToken? userToken.data: 'not user token'}</Text>
-		<Text>{isLoadingUser? 'Loading...' : 'not loading'}</Text>
+		<Text>{isLoadingUser? i18n.t('loading') : ''}</Text>
 		<FloatingLabelInput
 			nativeID='email'
 			label={'e-mail'}

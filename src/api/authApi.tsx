@@ -1,38 +1,25 @@
 import axios from 'axios';
 import { ILoginData, IRegisterData } from '../providers/AuthProvider/authContext.types';
+import Constants from 'expo-constants';
 
 const authFetch = {
 	async RegisterUser(data: IRegisterData) {
 		const bodyFormData = new FormData();
-		bodyFormData.append('Email', data.Email);
-		bodyFormData.append('Password', data.Password);
-		bodyFormData.append('Username', data.Username);
-		const res = await axios({
-			url: 'https://10.0.2.2:8000/api/user/register',
-			headers: {
-				'Access-Control-Allow-Origin': '*',
-				'Content-Type': 'multipart/form-data',
-			},
-			method: 'POST',
-			data: bodyFormData,
+		bodyFormData.append('email', data.email);
+		bodyFormData.append('password', data.password);
+		bodyFormData.append('username', data.username);
+		const res = await axios.postForm(Constants.manifest.extra.BASE_URL + '/api/user/register', bodyFormData).then((res) => {
+			return res;
 		});
-		console.log(res);
 		return res;
 	},
 	async LoginUser(data: ILoginData) {
 		const bodyFormData = new FormData();
-		bodyFormData.append('Email', data.email);
-		bodyFormData.append('Password', data.password);
-		console.warn(bodyFormData);
-		const res = await axios({
-			url: 'https://172.19.240.1:8000/api/user/login',
-			headers: {
-				'Access-Control-Allow-Origin': '*',
-				'Content-Type': 'multipart/form-data',
-			},
-			method: 'POST',
-			data: bodyFormData,
-		}).catch(e => console.warn(e));
+		bodyFormData.append('email', data.email);
+		bodyFormData.append('password', data.password);
+		const res = await axios.postForm(Constants.manifest.extra.BASE_URL + '/api/user/login', bodyFormData).then((res) => {
+			return res;
+		});
 		return res;
 	},
 };

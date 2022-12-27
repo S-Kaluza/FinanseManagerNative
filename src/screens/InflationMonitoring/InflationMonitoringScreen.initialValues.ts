@@ -1,4 +1,4 @@
-import { IInflationObject } from './InflationMonitoring.types';
+import { IInflationObject } from './InflationMonitoringScreen.types';
 
 export const inflationArray: IInflationObject[] = [
 	{

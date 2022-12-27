@@ -2,10 +2,10 @@ import React, { useContext, useState } from 'react';
 import { Text, View, Dimensions, Pressable } from 'react-native';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
 import { LineChart } from 'react-native-chart-kit';
-import styles from './Analytics.styles';
+import styles from './AnalyticsScreen.styles';
 import i18n from 'i18next';
 
-export function Analytics(){
+export function AnalyticsScreen(){
 	const [isWeekAnalytics, setIsWeekAnalytics] = useState(false);
 	const { analyticsDataWeek, analyticsDataMonth, isExpense, setIsExpense } = useContext(dataContext);
 	const labelsWeek = analyticsDataWeek.map(({ numberOfTimePeriod }) => {
@@ -26,8 +26,6 @@ export function Analytics(){
 	const expenseValuesMonth = analyticsDataMonth.map(({ valueExpense }) => {
 		return valueExpense;
 	});
-	console.log(labelsMonth.length);
-	console.log(expenseValuesMonth.length);
 	return (
 		<View>
 			<Text style={styles.analyticsHeader}>{!isExpense? i18n.t('incomeAnalytics') : i18n.t('expenseAnalytics')}</Text>
@@ -75,4 +73,4 @@ export function Analytics(){
 	);
 }
 
-export default Analytics;
+export default AnalyticsScreen;
