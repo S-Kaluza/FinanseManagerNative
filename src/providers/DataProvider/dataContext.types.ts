@@ -54,8 +54,6 @@ export interface IDataInterface {
   isExpense: boolean, // boolean variable that change display income or expense list
   analyticsDataWeek: IAnalyticsObject[], // array of objects that contains data for analytics chart for week
   analyticsDataMonth: IAnalyticsObject[], // array of objects that contains data for analytics chart for month
-  setIncomeList: React.Dispatch<React.SetStateAction<IIncomeOrExpense[]>> // function that change incomeList variable
-  setExpenseList: React.Dispatch<React.SetStateAction<IIncomeOrExpense[]>> // function that change expenseList variable
   userIncomes: void | AxiosResponse<any, any> | undefined; // variable that contains data about user incomes
   isFetchedUserIncomes: boolean; // boolean variable that change display loading spinner
   saveExpenseAndIncome: () => void; // function that save expense and income in database

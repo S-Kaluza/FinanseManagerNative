@@ -131,19 +131,17 @@ function useDataProvider() {
 		analyticsDataWeek,
 		analyticsDataMonth,
 		userIncomes,
-		setIncomeList,
-		setExpenseList,
-		isFetchedUserIncomes,
-		refetchUserIncomes,
+		isFetchedUserIncomes, //delete all
+		refetchUserIncomes, // delete
 		userExpenses,
-		isFetchedUserExpenses,
-		refetchUserExpenses,
+		isFetchedUserExpenses, //delete all
+		refetchUserExpenses, // delete
 		number,
-		saveExpenseAndIncome,
-		fetchInflation,
-		setNumber,
+		saveExpenseAndIncome, //delete
+		fetchInflation, //delete
+		setNumber, //delete
 		inflation: inflation?.data[0].yearly_rate_pct,
-		isFetchingInflation,
+		isFetchingInflation, //delete all
 		convertedCurrency,
 		isFetchedConvertCurrency,
 		refetchConvertCurrency,
@@ -155,8 +153,8 @@ function useDataProvider() {
 		removeIncome,
 		incomeList,
 		expenseList,
-		sendExpense,
-		sendIncome,
+		sendExpense, //delete
+		sendIncome, //delete
 	};
 }
 export default useDataProvider;
