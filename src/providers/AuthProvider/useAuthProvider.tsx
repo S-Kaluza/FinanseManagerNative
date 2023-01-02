@@ -51,8 +51,6 @@ function useAuthProvider() {
 	const removeTokenFromLocalStorage = async () => {
 		try {
 			await AsyncStorage.removeItem('token');
-			await AsyncStorage.removeItem('incomeArray');
-			await AsyncStorage.removeItem('expenseArray');
 			await AsyncStorage.removeItem('profileData');
 			setIsLogin(false);
 		} catch (e) {

@@ -14,11 +14,7 @@ function LoginScreen({ navigation } : BottomTabScreenPropsWithNavigation) {
 	const { setLoginData, isLoadingUser, isLogin, loginUserFunc, loginData } = useContext(authContext);
 	const { synchroniseData } = useContext(dataContext);
 	const [show] = useState(false);
-	useEffect(() => {
-		synchroniseData();
-		navigation.goBack();
-	}, [isLogin]);
-	const { handleSubmit, values, handleChange } = useFormik({
+	const { handleSubmit, values, handleChange, setFieldValue } = useFormik({
 		initialValues: loginData,
 		validationSchema: LoginValidationSchema,
 		onSubmit: () => {
@@ -26,6 +22,13 @@ function LoginScreen({ navigation } : BottomTabScreenPropsWithNavigation) {
 			loginUserFunc();
 		},
 	});
+	
+	useEffect(() => {
+		synchroniseData();
+		navigation.goBack();
+		setFieldValue('password', '');
+		setFieldValue('email', '');
+	}, [isLogin]);
 	
 	return <View style={styles.formWrapper}>
 		<Text>{isLoadingUser? i18n.t('loading') : ''}</Text>
