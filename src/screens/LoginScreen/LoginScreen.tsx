@@ -14,7 +14,7 @@ function LoginScreen({ navigation } : BottomTabScreenPropsWithNavigation) {
 	const { setLoginData, isLoadingUser, isLogin, loginUserFunc, loginData } = useContext(authContext);
 	const [show] = useState(false);
 	useEffect(() => {
-		navigation.navigate(i18n.t('Profile'), { screen: ProfileScreen });
+		navigation.navigate(i18n.t('Profile'));
 	}, [isLogin]);
 	const { handleSubmit, values, handleChange } = useFormik({
 		initialValues: loginData,

@@ -4,7 +4,6 @@ import { styles } from './ProfileScreen.styles';
 import { authContext } from '../../providers/AuthProvider/AuthProvider';
 import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNavigator.types';
 import i18n from 'i18next';
-import LoginScreen from '../LoginScreen/LoginScreen';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
 
 function ProfileScreen( { navigation }:  BottomTabScreenPropsWithNavigation) {
@@ -39,7 +38,7 @@ function ProfileScreen( { navigation }:  BottomTabScreenPropsWithNavigation) {
 				{profileData.description != null? <Text style={styles.simpleText}>{profileData.description}</Text>: <Text style={styles.simpleText}>{i18n.t('noData')}</Text>}
 			</View>
 			{!isLogin? <View style={styles.buttonsWrapper}>
-				<Pressable style={styles.button} onPress={() => navigation.navigate(i18n.t('Login'), { screen: LoginScreen })}><Text style={styles.buttonText}>{i18n.t('Login')}</Text></Pressable>
+				<Pressable style={styles.button} onPress={() => navigation.navigate(i18n.t('Login'))}><Text style={styles.buttonText}>{i18n.t('Login')}</Text></Pressable>
 				<Pressable style={styles.button} onPress={() => navigation.navigate(i18n.t('Register'))}><Text style={styles.buttonText}>{i18n.t('Register')}</Text></Pressable>
 			</View> :
 				<Pressable style={styles.button} onPress={removeTokenFromLocalStorage}><Text style={styles.buttonText}>{i18n.t('logout')}</Text></Pressable>}

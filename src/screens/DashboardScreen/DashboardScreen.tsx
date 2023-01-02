@@ -6,8 +6,6 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import styles from './DashboardScreen.styles';
 import i18n from 'i18next';
 import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNavigator.types';
-import AddIncomeScreen from '../AddIncome/AddIncomeScreen';
-import AddExpenseScreen from '../AddExpenseScreen/AddExpenseScreen';
 
 
 function DashboardScreen( { navigation } : BottomTabScreenPropsWithNavigation ) {
@@ -26,12 +24,12 @@ function DashboardScreen( { navigation } : BottomTabScreenPropsWithNavigation ) 
 						<Text style={styles.headerText}>{i18n.t('expenses')}</Text>
 						{expenseList.map(({ id, name, value, date }) => {
 							return <IncomeOrExpenseListElement id={id} key={id} date={date} name={name} value={value}  />;
-						})}</>:<><Pressable onPress={() => navigation.navigate(i18n.t('AddExpense'), { screen: AddExpenseScreen })} style={styles.AddIcons}><Ionicon name='add-circle' color={'gray'} size={75} style={styles.icons}></Ionicon><Text>{i18n.t('AddExpense')}</Text></Pressable></>
+						})}</>:<><Pressable onPress={() => navigation.navigate(i18n.t('AddExpense'))} style={styles.AddIcons}><Ionicon name='add-circle' color={'gray'} size={75} style={styles.icons}></Ionicon><Text>{i18n.t('AddExpense')}</Text></Pressable></>
 					:incomeList.length !== 0?<>
 						<Text style={styles.headerText}>{i18n.t('incomes')}</Text>
 						{incomeList.map(({ id, name, value, date }) => {
 							return <IncomeOrExpenseListElement id={id} key={id} date={date} name={name} value={value}  />;
-						})}</>: <><Pressable onPress={() => navigation.navigate(i18n.t('AddIncome'), { screen: AddIncomeScreen })} style={styles.AddIcons}><Ionicon name='add-circle' color={'black'} size={75} style={styles.icons}></Ionicon><Text>{i18n.t('AddIncome')}</Text></Pressable></>}
+						})}</>: <><Pressable onPress={() => navigation.navigate(i18n.t('AddIncome'))} style={styles.AddIcons}><Ionicon name='add-circle' color={'black'} size={75} style={styles.icons}></Ionicon><Text>{i18n.t('AddIncome')}</Text></Pressable></>}
 			</>
 			</View>
 			<Pressable onPress={() => setIsExpense(!isExpense)} style={styles.pressableSwitch}><Text>{isExpense? i18n.t('switchIncome') : i18n.t('switchExpense')}</Text></Pressable>

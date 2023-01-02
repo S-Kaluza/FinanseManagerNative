@@ -61,12 +61,14 @@ function useAuthProvider() {
 
 	const loginUserFunc = async () => {
 		await loginUser();
-		await setTokenToLocalStorage(userToken?.data.token);
+		if (!userToken?.data.token) return;
+		await setTokenToLocalStorage(userToken.data.token);
 	};
 
 	const registerUserFunc = async () => {
 		await registerUser();
-		await setTokenToLocalStorage(userToken?.data.token);
+		if (!userToken?.data.token) return;
+		await setTokenToLocalStorage(userToken.data.token);
 	};
 
 	return {
