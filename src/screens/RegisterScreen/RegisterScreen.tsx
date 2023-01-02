@@ -11,19 +11,22 @@ import styles from './RegisterScreen.styles';
 function RegisterScreen({ navigation } : BottomTabScreenPropsWithNavigation) {
 	const { setRegisterData, isLoadingUser, isLogin, registerData, registerUserFunc } = useContext(authContext);
 	const [show] = useState(false);
-	useEffect(() => {
-		navigation.goBack();
-	}, [isLogin]);
-	const { handleSubmit, values, handleChange } = useFormik({
+	const { handleSubmit, values, handleChange, setFieldValue } = useFormik({
 		initialValues: registerData,
 		validationSchema: RegisterValidationSchema,
 		onSubmit: () => {
 			setRegisterData({ email: values.email, password: values.password, username: values.username });
 			registerUserFunc();
-			console.warn(values);
 		},
 	});
-
+	
+	useEffect(() => {
+		setFieldValue('email', '');
+		setFieldValue('password', '');
+		setFieldValue('username', '');
+		if(isLogin) navigation.goBack();
+	}, [isLogin]);
+	
 	return <View style={styles.formWrapper}>
 		<Text>{isLoadingUser? 'Loading...' : 'not loading'}</Text>
 		<FloatingLabelInput

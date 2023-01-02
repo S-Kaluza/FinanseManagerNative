@@ -15,7 +15,6 @@ function ProfileScreen( { navigation }:  BottomTabScreenPropsWithNavigation) {
 			<Image style={{ width: '100%', height: 250 }} source={{ uri: 'https://picsum.photos/200/300' }} />
 			<View style={styles.buttonsWrapper}>
 				<Pressable style={styles.button} onPress={() => navigation.navigate(i18n.t('UpdateProfile'))}><Text style={styles.buttonText}>{i18n.t('edit')}</Text></Pressable>
-				<Pressable style={styles.button} onPress={() => synchroniseData()}><Text style={styles.buttonText}>{i18n.t('synchronise')}</Text></Pressable>
 			</View>
 			<View style={styles.dataWrapper}>
 				<Text style={styles.simpleText}>{i18n.t('username')}</Text>
