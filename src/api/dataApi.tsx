@@ -26,7 +26,6 @@ export const dataFetch = {
 	async getUserIncomes() {
 		try{
 			const token = await AsyncStorage.getItem('token');
-			console.log(Constants.manifest.extra.BASE_URL + '/api/income');
 			const res = await axios({
 				url: Constants.manifest.extra.BASE_URL + '/api/income',
 				method: 'GET',

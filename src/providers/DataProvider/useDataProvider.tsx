@@ -92,10 +92,10 @@ function useDataProvider() {
 		try {
 			const income = await AsyncStorage.getItem('incomeArray');
 			const expense = await AsyncStorage.getItem('expenseArray');
-			if (income !== null) {
+			if (income !== undefined && income !== null) {
 				setIncomeList(JSON.parse(income));
 			}
-			if (expense !== null) {
+			if (expense !== undefined && expense !== null) {
 				setExpenseList(JSON.parse(expense));
 			}
 		} catch(e) {
@@ -106,10 +106,12 @@ function useDataProvider() {
 	const synchroniseData = async () => {
 		await refetchUserIncomes();
 		await refetchUserExpenses();
-		const inc = await JSON.parse(JSON.stringify(userIncomes?.data));
-		const exp = await JSON.parse(JSON.stringify(userExpenses?.data));
-		setIncomeList(inc);
-		setExpenseList(exp);
+		if(userIncomes?.data !== undefined && userExpenses?.data !== undefined){
+			const inc = await JSON.parse(JSON.stringify(userIncomes?.data));
+			const exp = await JSON.parse(JSON.stringify(userExpenses?.data));
+			setIncomeList(inc);
+			setExpenseList(exp);
+		}
 	};
 
 	const getNextId = (list: IIncomeOrExpense[]) => {
