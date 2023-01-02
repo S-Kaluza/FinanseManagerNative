@@ -18,8 +18,8 @@ function useDataProvider() {
 	const { data: convertedCurrency, isFetching: isFetchedConvertCurrency, refetch: refetchConvertCurrency } = useQuery(['convertData', exchangeData], () => dataFetch.convertCurrency(exchangeData), { enabled: false });
 	const { mutate: sendIncome } = useMutation(['sendIncome', incomeList], () => dataFetch.sendUserIncomes(incomeList), { });
 	const { mutate: sendExpense } = useMutation(['sendExpense', expenseList], () => dataFetch.sendUserExpenses(expenseList), { });
-	const { data: userIncomes, isFetched: isFetchedUserIncomes, refetch: refetchUserIncomes } = useQuery(['fetchUserIncomes'], () => dataFetch.getUserIncomes(), { enabled: false });
-	const { data: userExpenses, isFetched: isFetchedUserExpenses, refetch: refetchUserExpenses } = useQuery(['fetchUserExpenses'], () => dataFetch.getUserExpenses(), { enabled: false });
+	const { data: userIncomes, refetch: refetchUserIncomes } = useQuery(['fetchUserIncomes'], () => dataFetch.getUserIncomes(), { enabled: false });
+	const { data: userExpenses, refetch: refetchUserExpenses } = useQuery(['fetchUserExpenses'], () => dataFetch.getUserExpenses(), { enabled: false });
 
 	const addIncomeToAsyncStorage = async (income : IIncomeOrExpense[]) => {
 		try {
@@ -131,17 +131,9 @@ function useDataProvider() {
 		analyticsDataWeek,
 		analyticsDataMonth,
 		userIncomes,
-		isFetchedUserIncomes, //delete all
-		refetchUserIncomes, // delete
 		userExpenses,
-		isFetchedUserExpenses, //delete all
-		refetchUserExpenses, // delete
 		number,
-		saveExpenseAndIncome, //delete
-		fetchInflation, //delete
-		setNumber, //delete
 		inflation: inflation?.data[0].yearly_rate_pct,
-		isFetchingInflation, //delete all
 		convertedCurrency,
 		isFetchedConvertCurrency,
 		refetchConvertCurrency,
@@ -153,8 +145,6 @@ function useDataProvider() {
 		removeIncome,
 		incomeList,
 		expenseList,
-		sendExpense, //delete
-		sendIncome, //delete
 	};
 }
 export default useDataProvider;

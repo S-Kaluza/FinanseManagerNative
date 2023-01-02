@@ -53,6 +53,7 @@ function useAuthProvider() {
 			await AsyncStorage.removeItem('token');
 			await AsyncStorage.removeItem('incomeArray');
 			await AsyncStorage.removeItem('expenseArray');
+			await AsyncStorage.removeItem('profileData');
 			setIsLogin(false);
 		} catch (e) {
 			console.log(e);
@@ -82,23 +83,12 @@ function useAuthProvider() {
 		}
 	};
 
-	const removeProfileDataFromAsyncStorage = async () => {
-		try {
-			await AsyncStorage.removeItem('profileData');
-		} catch(e) {
-			console.log(e);
-		}
-	};
-
 	return {
-		removeProfileDataFromAsyncStorage,
 		addProfileDataToAsyncStorage,
 		registerUserFunc,
 		loginUserFunc,
 		isLogin,
 		removeTokenFromLocalStorage,
-		getTokenFromLocalStorage,
-		loginStatus,
 		profileData,
 		setProfileData,
 		userToken,
@@ -109,8 +99,8 @@ function useAuthProvider() {
 		registerData,
 		isLoadingUser,
 		isRegisteringUser,
-		errorLogin,
-		errorRegister,
+		errorLogin, // delete or use
+		errorRegister, // delete or use
 	};
 }
 
