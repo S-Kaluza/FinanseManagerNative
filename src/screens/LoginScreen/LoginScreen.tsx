@@ -8,13 +8,15 @@ import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNaviga
 import styles from './LoginScreen.styles';
 import i18n from 'i18next';
 import { useEffect } from 'react';
-import ProfileScreen from '../ProfileScreen/ProfileScreen';
+import { dataContext } from '../../providers/DataProvider/DataProvider';
 
 function LoginScreen({ navigation } : BottomTabScreenPropsWithNavigation) {
 	const { setLoginData, isLoadingUser, isLogin, loginUserFunc, loginData } = useContext(authContext);
+	const { synchroniseData } = useContext(dataContext);
 	const [show] = useState(false);
 	useEffect(() => {
-		navigation.navigate(i18n.t('Profile'));
+		synchroniseData();
+		navigation.goBack();
 	}, [isLogin]);
 	const { handleSubmit, values, handleChange } = useFormik({
 		initialValues: loginData,

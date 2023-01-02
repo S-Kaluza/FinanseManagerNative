@@ -23,6 +23,8 @@ export interface IProfileData {
 }
 
 export interface IAuthInterface {
+  removeProfileDataFromAsyncStorage: () => Promise<void>; // function that remove profile data from async storage
+  addProfileDataToAsyncStorage: () => Promise<void>; // function that add profile data to async storage
   registerUserFunc: () => Promise<void>; // function that register user
   loginUserFunc: () => Promise<void>; // function that login user
   isLogin: boolean; // boolean variable that change display login or logout button

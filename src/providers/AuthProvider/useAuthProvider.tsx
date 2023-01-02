@@ -12,14 +12,14 @@ function useAuthProvider() {
 	const { data: userTokenRegister, refetch: registerUser, isLoading: isRegisteringUser, error: errorRegister, status: registerStatus } = useQuery(['registerUser', loginData], () => authFetch.RegisterUser(registerData), { enabled: false });
 	const [isLogin, setIsLogin] = useState(false);
 	useEffect(() => {
-		if (loginStatus === 'success') {
+		if (loginStatus === 'success' && userToken?.data.token !== undefined) {
 			AsyncStorage.setItem('token', userToken?.data.token).catch(e => {
 				console.log(e);
 			});
 		}
 	}, [loginStatus]);
 	useEffect(() => {
-		if (registerStatus === 'success') {
+		if (registerStatus === 'success' && userToken?.data.token !== undefined) {
 			AsyncStorage.setItem('token', userToken?.data.token).catch(e => {
 				console.log(e);
 			});
@@ -51,6 +51,8 @@ function useAuthProvider() {
 	const removeTokenFromLocalStorage = async () => {
 		try {
 			await AsyncStorage.removeItem('token');
+			await AsyncStorage.removeItem('incomeArray');
+			await AsyncStorage.removeItem('expenseArray');
 			setIsLogin(false);
 		} catch (e) {
 			console.log(e);
@@ -67,11 +69,30 @@ function useAuthProvider() {
 
 	const registerUserFunc = async () => {
 		await registerUser();
-		if (!userToken?.data.token) return;
-		await setTokenToLocalStorage(userToken.data.token);
+		if (!userTokenRegister?.data.token) return;
+		await setTokenToLocalStorage(userTokenRegister.data.token);
+	};
+
+	const addProfileDataToAsyncStorage = async () => {
+		try {
+			const jsonValue = JSON.stringify(profileData);
+			await AsyncStorage.setItem('profileData', jsonValue);
+		} catch(e) {
+			console.log(e);
+		}
+	};
+
+	const removeProfileDataFromAsyncStorage = async () => {
+		try {
+			await AsyncStorage.removeItem('profileData');
+		} catch(e) {
+			console.log(e);
+		}
 	};
 
 	return {
+		removeProfileDataFromAsyncStorage,
+		addProfileDataToAsyncStorage,
 		registerUserFunc,
 		loginUserFunc,
 		isLogin,

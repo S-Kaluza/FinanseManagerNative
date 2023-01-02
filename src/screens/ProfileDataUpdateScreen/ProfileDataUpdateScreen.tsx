@@ -7,15 +7,18 @@ import { View, Text, Pressable } from 'react-native';
 import { authContext } from '../../providers/AuthProvider/AuthProvider';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { toDate } from 'date-fns';
+import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNavigator.types';
 import i18n from 'i18next';
 
-function ProfileDataUpdateScreen() {
-	const { profileData, setProfileData } = useContext(authContext);
+function ProfileDataUpdateScreen({ navigation }: BottomTabScreenPropsWithNavigation) {
+	const { profileData, setProfileData, addProfileDataToAsyncStorage } = useContext(authContext);
 	const { handleSubmit, values, handleChange, setFieldValue } = useFormik({
 		initialValues: profileData,
 		validationSchema: ProfileUpdateValidationSchema,
 		onSubmit: () => {
 			setProfileData(values);
+			addProfileDataToAsyncStorage();
+			navigation.goBack();
 		},
 	});
 

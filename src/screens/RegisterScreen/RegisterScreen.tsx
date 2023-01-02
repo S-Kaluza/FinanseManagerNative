@@ -4,7 +4,6 @@ import { useFormik } from 'formik';
 import { authContext } from '../../providers/AuthProvider/AuthProvider';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
 import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNavigator.types';
-import i18n from 'i18next';
 import { useEffect } from 'react';
 import { RegisterValidationSchema } from './RegisterScreen.validation';
 import styles from './RegisterScreen.styles';
@@ -13,7 +12,7 @@ function RegisterScreen({ navigation } : BottomTabScreenPropsWithNavigation) {
 	const { setRegisterData, isLoadingUser, isLogin, registerData, registerUserFunc } = useContext(authContext);
 	const [show] = useState(false);
 	useEffect(() => {
-		navigation.navigate(i18n.t('Profile'));
+		navigation.goBack();
 	}, [isLogin]);
 	const { handleSubmit, values, handleChange } = useFormik({
 		initialValues: registerData,
@@ -21,6 +20,7 @@ function RegisterScreen({ navigation } : BottomTabScreenPropsWithNavigation) {
 		onSubmit: () => {
 			setRegisterData({ email: values.email, password: values.password, username: values.username });
 			registerUserFunc();
+			console.warn(values);
 		},
 	});
 
