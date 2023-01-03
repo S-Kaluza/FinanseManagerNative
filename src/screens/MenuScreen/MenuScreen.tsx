@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from 'react-native';
 import React from 'react';
 import Ionicon from 'react-native-vector-icons/Ionicons';
-import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNavigator.types';
+import { BottomTabScreenPropsWithNavigation } from '../../navigation/RootNavigator.types';
 import styles from './MenuScreen.styles';
 import i18n from 'i18next';
 

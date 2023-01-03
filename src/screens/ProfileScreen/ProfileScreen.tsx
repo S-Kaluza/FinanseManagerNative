@@ -2,7 +2,7 @@ import { View, Text, Image, Pressable, ScrollView } from 'react-native';
 import React, { useContext } from 'react';
 import { styles } from './ProfileScreen.styles';
 import { authContext } from '../../providers/AuthProvider/AuthProvider';
-import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNavigator.types';
+import { BottomTabScreenPropsWithNavigation } from '../../navigation/RootNavigator.types';
 import i18n from 'i18next';
 import { dataContext } from '../../providers/DataProvider/DataProvider';
 

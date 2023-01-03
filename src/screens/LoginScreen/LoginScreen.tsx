@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { LoginValidationSchema } from './LoginScreen.validation';
 import { authContext } from '../../providers/AuthProvider/AuthProvider';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
-import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNavigator.types';
+import { BottomTabScreenPropsWithNavigation } from '../../navigation/RootNavigator.types';
 import styles from './LoginScreen.styles';
 import i18n from 'i18next';
 import { useEffect } from 'react';

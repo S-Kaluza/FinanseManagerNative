@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Text, View, Dimensions, Pressable } from 'react-native';
+import { Text, View, Dimensions, Pressable, TouchableOpacity } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { inflationArray } from './InflationMonitoringScreen.initialValues';
 import styles from './InflationMonitoringScreen.styles';
 
-export function InflationMonitorScreen(){
+function InflationMonitorScreen(){
 	const [year, setYear] = useState(2020);
 	const inflationObjectsArray = inflationArray;
 	const labels = inflationObjectsArray.filter(({ date }) => date.getFullYear() === year).map(({ date }) => {
@@ -53,6 +53,7 @@ export function InflationMonitorScreen(){
 			}}
 		/>
 		<View style={styles.controlWrapper}>
+			{/* <TouchableOpacity */}
 			<Pressable onPress={() => {if(year > 2020) {setYear(prev => prev - 1);}}}>
 				<View style={styles.controlElement}>
 					<Text style={styles.controlElementText}>

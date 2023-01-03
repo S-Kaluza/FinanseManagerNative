@@ -1,8 +1,8 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { NativeModules } from 'react-native';
-import plLang from './locale/translationPL/plLang';
-import enLang from './locale/translationEN/enLang';
+import plLang from './translationPL/plLang';
+import enLang from './translationEN/enLang';
 
 i18next
 	.use(initReactI18next)

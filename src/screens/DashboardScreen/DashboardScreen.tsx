@@ -5,7 +5,7 @@ import { dataContext } from '../../providers/DataProvider/DataProvider';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import styles from './DashboardScreen.styles';
 import i18n from 'i18next';
-import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNavigator.types';
+import { BottomTabScreenPropsWithNavigation } from '../../navigation/RootNavigator.types';
 
 
 function DashboardScreen( { navigation } : BottomTabScreenPropsWithNavigation ) {

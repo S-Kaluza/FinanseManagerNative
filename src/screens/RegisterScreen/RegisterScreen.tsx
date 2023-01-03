@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import { authContext } from '../../providers/AuthProvider/AuthProvider';
 import { FloatingLabelInput } from 'react-native-floating-label-input';
-import { BottomTabScreenPropsWithNavigation } from '../../navigations/RootNavigator.types';
+import { BottomTabScreenPropsWithNavigation } from '../../navigation/RootNavigator.types';
 import { useEffect } from 'react';
 import { RegisterValidationSchema } from './RegisterScreen.validation';
 import styles from './RegisterScreen.styles';
